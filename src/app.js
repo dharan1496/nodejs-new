@@ -8,6 +8,7 @@ const requestsRouter = require("./routes/requests");
 const profileRouter = require("./routes/profile");
 const userRouter = require("./routes/user");
 const cors = require("cors");
+require("./utils/cronJob");
 
 const app = express();
 app.use(express.json())
