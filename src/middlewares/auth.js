@@ -10,7 +10,7 @@ const userAuth = async (req, res, next) => {
       return res.status(401).send("Unauthorized");
     }
 
-    const isValid = jwt.verify(token, "dharan1496@");
+    const isValid = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
     const loggedUser = await User.findById(isValid?._id);
 

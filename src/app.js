@@ -6,6 +6,7 @@ const requestsRouter = require("./routes/requests");
 const profileRouter = require("./routes/profile");
 const userRouter = require("./routes/user");
 const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
 app.use(express.json())
@@ -22,7 +23,7 @@ app.use("/", userRouter);
 connectDB()
   .then(() => {
     console.log("MongoDB connected successfully!");
-    app.listen(3000, () => {
+    app.listen(process.env.PORT, () => {
       console.log("Server is running on port 3000");
     });
   })
