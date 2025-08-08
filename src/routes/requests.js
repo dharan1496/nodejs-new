@@ -2,6 +2,7 @@ const express = require("express");
 const { userAuth } = require("../middlewares/auth");
 const ConnectionRequest = require("../models/connectionRequest");
 const User = require("../models/user");
+const { sendEmail } = require("../utils/sendEmail")
 
 const router = express.Router();
 
@@ -42,8 +43,12 @@ router.post("/request/send/:status/:toUserId", userAuth, async (req, res) => {
 
     const data = await connectionRequest.save();
 
+    const message = status === "interested" ? `You are ${status} in ${toUser.firstName}` : `You ignored ${toUser.firstName}`
+
+    await sendEmail(toUser.emailId, `New friend Request from ${fromUserFirstName}`, message);
+
     res.json({
-      message: status === "interested" ? `You are ${status} in ${toUser.firstName}` : `You ignored ${toUser.firstName}`,
+      message,
       data,
     });
   } catch (err) {
