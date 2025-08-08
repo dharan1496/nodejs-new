@@ -7,7 +7,7 @@ const userAuth = async (req, res, next) => {
     const { token } = cookies;
 
     if (!token) {
-      throw new Error("Unauthorized");
+      return res.status(401).send("Unauthorized");
     }
 
     const isValid = jwt.verify(token, "dharan1496@");
@@ -22,7 +22,7 @@ const userAuth = async (req, res, next) => {
 
     next();
   } catch (err) {
-    res.status(401).send("ERROR: "+ err.message);
+    res.status(400).send("ERROR: "+ err.message);
   }
 };
 

@@ -43,7 +43,7 @@ router.post("/request/send/:status/:toUserId", userAuth, async (req, res) => {
     const data = await connectionRequest.save();
 
     res.json({
-      message: `${fromUserFirstName} is ${status} in ${toUser.firstName}`,
+      message: status === "interested" ? `You are ${status} in ${toUser.firstName}` : `You ignored ${toUser.firstName}`,
       data,
     });
   } catch (err) {

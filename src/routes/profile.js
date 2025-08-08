@@ -11,7 +11,7 @@ const validator = require('validator');
 router.get("/profile/view", userAuth, async (req, res) => {
     try {
       const user = req.user;
-      res.send(user);
+      res.send({ data: user });
     } catch (err) {
       res.status(500).send("ERROR:" + err.message);
     }
