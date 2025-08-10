@@ -8,7 +8,7 @@ const requestsRouter = require("./routes/requests");
 const profileRouter = require("./routes/profile");
 const userRouter = require("./routes/user");
 const cors = require("cors");
-require("./utils/cronJob");
+// require("./utils/cronJob");
 const http = require("http");
 const initializeSocket = require("./utils/socket");
 const chatRouter = require("./routes/chat");
